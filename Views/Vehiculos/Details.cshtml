@@ -1,0 +1,100 @@
+﻿@model ParqueoUPDS.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Detalles del Vehículo";
+}
+
+<h2>Detalles del Vehículo</h2>
+
+<div class="card shadow p-4 mt-3">
+    <h4>Información del Vehículo</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-3">Placa:</dt>
+        <dd class="col-sm-9">@Model.Placa</dd>
+
+        <dt class="col-sm-3">Marca:</dt>
+        <dd class="col-sm-9">@Model.Marca</dd>
+
+        <dt class="col-sm-3">Modelo:</dt>
+        <dd class="col-sm-9">@Model.Modelo</dd>
+
+        <dt class="col-sm-3">Horas Acumuladas:</dt>
+        <dd class="col-sm-9">@Model.HorasAcumuladas</dd>
+    </dl>
+
+    <hr />
+
+    <!-- Sesiones del vehículo -->
+    <h4>Sesiones de Parqueo</h4>
+
+    @if (Model.Sesiones != null && Model.Sesiones.Any())
+    {
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Entrada</th>
+                    <th>Salida</th>
+                    <th>Duración (hrs)</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model.Sesiones.OrderByDescending(x => x.HoraEntrada))
+                {
+                    <tr>
+                        <td>@s.HoraEntrada</td>
+                        <td>@(s.HoraSalida?.ToString() ?? "-")</td>
+                        <td>@(s.DuracionHoras?.ToString() ?? "-")</td>
+                        <td>@s.Estado</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay sesiones registradas.</p>
+    }
+
+    <hr />
+
+    <!-- Recompensas del vehículo -->
+    <h4>Recompensas Entregadas</h4>
+
+    @if (Model.Recompensas != null && Model.Recompensas.Any())
+    {
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Fecha de Entrega</th>
+                    <th>Tipo Premio</th>
+                    <th>Horas Acumuladas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model.Recompensas.OrderByDescending(x => x.FechaEntrega))
+                {
+                    <tr>
+                        <td>@r.FechaEntrega</td>
+                        <td>@r.TipoPremio</td>
+                        <td>@r.HorasAcumuladasAlMomento</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay recompensas entregadas a este vehículo.</p>
+    }
+
+    <hr />
+
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+
+</div>

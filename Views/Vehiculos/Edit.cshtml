@@ -1,0 +1,46 @@
+﻿@model ParqueoUPDS.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Editar Vehículo";
+}
+
+<h2>Editar Vehículo</h2>
+
+<div class="card shadow p-4 mt-3">
+    <form asp-action="Edit">
+        <!-- La placa es la clave primaria y debe enviarse en oculto -->
+        <input type="hidden" asp-for="Placa" />
+
+        <div class="mb-3">
+            <label asp-for="Placa" class="form-label"></label>
+            <input asp-for="Placa" class="form-control" disabled />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Marca" class="form-label"></label>
+            <input asp-for="Marca" class="form-control" />
+            <span asp-validation-for="Marca" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Modelo" class="form-label"></label>
+            <input asp-for="Modelo" class="form-control" />
+            <span asp-validation-for="Modelo" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="HorasAcumuladas" class="form-label"></label>
+            <input asp-for="HorasAcumuladas" class="form-control" />
+            <span asp-validation-for="HorasAcumuladas" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

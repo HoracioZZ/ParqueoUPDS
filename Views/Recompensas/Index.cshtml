@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ParqueoUPDS.Models.Recompensa>
+
+@{
+    ViewData["Title"] = "Recompensas Entregadas";
+}
+
+<h2>Recompensas Entregadas</h2>
+
+<table class="table table-striped table-bordered mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Vehículo (Placa)</th>
+            <th>Fecha de Entrega</th>
+            <th>Tipo de Premio</th>
+            <th>Horas Acumuladas al Momento</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Vehiculo.Placa</td>
+                <td>@r.FechaEntrega.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@r.TipoPremio</td>
+                <td>@(r.HorasAcumuladasAlMomento.HasValue? Math.Round(r.HorasAcumuladasAlMomento.Value, 2) : "—")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@r.Id" class="btn btn-info btn-sm">Detalles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

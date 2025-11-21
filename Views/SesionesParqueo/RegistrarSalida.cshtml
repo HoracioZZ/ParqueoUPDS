@@ -1,0 +1,22 @@
+﻿@model ParqueoUPDS.Models.SesionParqueo
+
+@{
+    ViewData["Title"] = "Registrar Salida";
+}
+
+<h2>Registrar Salida de Vehículo</h2>
+
+<div class="card shadow p-4 mt-3">
+    <h5>Vehículo: @Model.Vehiculo.Placa</h5>
+    <p>Hora de Entrada: @Model.HoraEntrada.ToString("yyyy-MM-dd HH:mm")</p>
+    <p>Estado actual: @Model.Estado</p>
+
+    <form asp-action="RegistrarSalida" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <p>¿Desea registrar la salida de este vehículo?</p>
+
+        <button type="submit" class="btn btn-warning">Registrar Salida</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

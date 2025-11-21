@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ParqueoUPDS.Models.SesionParqueo>
+
+@{
+    ViewData["Title"] = "Sesiones de Parqueo";
+}
+
+<h2>Sesiones de Parqueo</h2>
+
+<div class="mb-3">
+    <a asp-action="RegistrarEntrada" class="btn btn-primary">Registrar Entrada</a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Vehículo (Placa)</th>
+            <th>Hora Entrada</th>
+            <th>Hora Salida</th>
+            <th>Duración (Horas)</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Vehiculo.Placa</td>
+                <td>@s.HoraEntrada.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>
+                    @(s.HoraSalida.HasValue
+                                    ? s.HoraSalida.Value.ToString("yyyy-MM-dd HH:mm")
+                                    : "—")
+                                      </td>
+                                      <td>
+                    @(s.DuracionHoras.HasValue
+                                    ? Math.Round(s.DuracionHoras.Value, 2)
+                                    : "—")
+            </td>
+            <td>@s.Estado</td>
+            <td>
+                @if (s.Estado == "Dentro")
+                    {
+                        <a asp-action="RegistrarSalida" asp-route-id="@s.Id" class="btn btn-warning btn-sm">
+                            Registrar Salida
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Completado</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

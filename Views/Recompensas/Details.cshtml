@@ -1,0 +1,31 @@
+﻿@model ParqueoUPDS.Models.Recompensa
+
+@{
+    ViewData["Title"] = "Detalle de Recompensa";
+}
+
+<h2>Detalle de Recompensa</h2>
+
+<div class="card shadow p-4 mt-3">
+    <dl class="row">
+        <dt class="col-sm-3">Vehículo (Placa)</dt>
+        <dd class="col-sm-9">@Model.Vehiculo.Placa</dd>
+
+        <dt class="col-sm-3">Fecha de Entrega</dt>
+        <dd class="col-sm-9">@Model.FechaEntrega.ToString("yyyy-MM-dd HH:mm")</dd>
+
+        <dt class="col-sm-3">Tipo de Premio</dt>
+        <dd class="col-sm-9">@Model.TipoPremio</dd>
+
+        <dt class="col-sm-3">Horas Acumuladas al Momento</dt>
+        <dd class="col-sm-9">
+            @(Model.HorasAcumuladasAlMomento.HasValue
+                        ? Math.Round(Model.HorasAcumuladasAlMomento.Value, 2)
+                        : "—")
+        </dd>
+    </dl>
+
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+</div>

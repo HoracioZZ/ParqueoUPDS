@@ -1,0 +1,41 @@
+﻿@model ParqueoUPDS.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Registrar Vehículo";
+}
+
+<h2>Registrar Vehículo</h2>
+
+<div class="card shadow p-4 mt-3">
+    <form asp-action="Create">
+        <div class="mb-3">
+            <label asp-for="Placa" class="form-label"></label>
+            <input asp-for="Placa" class="form-control" />
+            <span asp-validation-for="Placa" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Marca" class="form-label"></label>
+            <input asp-for="Marca" class="form-control" />
+            <span asp-validation-for="Marca" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Modelo" class="form-label"></label>
+            <input asp-for="Modelo" class="form-control" />
+            <span asp-validation-for="Modelo" class="text-danger"></span>
+        </div>
+
+        <!-- HorasAcumuladas se inicia en 0, no se pide al registrar -->
+        <input type="hidden" asp-for="HorasAcumuladas" value="0" />
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

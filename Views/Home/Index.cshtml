@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Inicio - ParqueoUPDS";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Bienvenido al Sistema de Control de Parqueo UPDS</h1>
+    <p class="lead mt-3">Gestiona vehículos, sesiones de parqueo y recompensas de manera sencilla.</p>
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Vehículos</h5>
+                    <p class="card-text">Registrar y administrar los vehículos que utilizan el parqueo.</p>
+                    <a asp-controller="Vehiculos" asp-action="Index" class="btn btn-primary">Ir a Vehículos</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Sesiones de Parqueo</h5>
+                    <p class="card-text">Registrar entradas y salidas de vehículos, calcular horas y estados.</p>
+                    <a asp-controller="SesionesParqueo" asp-action="Index" class="btn btn-warning">Ir a Sesiones</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Recompensas</h5>
+                    <p class="card-text">Ver y administrar las recompensas entregadas a los vehículos.</p>
+                    <a asp-controller="Recompensas" asp-action="Index" class="btn btn-success">Ir a Recompensas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
