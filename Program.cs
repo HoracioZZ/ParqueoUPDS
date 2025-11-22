@@ -8,7 +8,7 @@ cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
 cultureInfo.NumberFormat.CurrencyDecimalSeparator = ".";
 cultureInfo.NumberFormat.NumberGroupSeparator = ",";
 
-// Permitir también COMA como separador decimal
+// Permitir tambiÃ©n COMA como separador decimal
 cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
 cultureInfo.NumberFormat.NumberDecimalDigits = 2;
 
@@ -16,11 +16,14 @@ CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 var builder = WebApplication.CreateBuilder(args);
-// 1. Conexión a PostgreSQL
+// 1. ConexiÃ³n a PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
+                    ?? Environment.GetEnvironmentVariable("DefaultConnection")));
 
 var app = builder.Build();
 
